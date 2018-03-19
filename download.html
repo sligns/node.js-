@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+	</head>
+	<body>
+		<div class='container th-show1'>
+ 	<h4>欢迎您来到网盘录入系统  下载页面：<i id='hi'></i></h4>
+ 		<input type="button" name="" class='form-control btn btn-default btn-danger btn-lg' value="退出登录"  id='tui'>
+ 	 		<input type="search" id='search' name="" class='btn btn-default right' value="" placeholder="搜索您想下载和预览的内容" style="margin-top:20px;">
+				<table class='table text-center table-hover'>
+        <thead>
+   <tr>
+            <td>序号</td>
+            <td>文件名</td>       
+            <td>文件大小</td>
+            <td>上传时间</td> 
+            <td>下载次数</td>
+            <td>下载</td>
+            <td>预览</td>
+            <td>是否删除</td>
+         </tr>      
+        </thead>
+        <tbody id='tb1'>
+        </tbody>
+     </table>		
+     
+     
+     
+    <div class="modal fade abc" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">展示栏</h4>
+          </div>
+          <div class="modal-body shows">
+          	<audio src='img/3fda859e06e29f806d44b8d4c38e7eec.mp3' controls></audio>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+		<script type="text/javascript" src="js/jq.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.js" ></script>
+		<script>
+			
+			
+			//退出登录
+					//登陆之后的渲染页面 以及下载
+		function dow(id,num){
+			num ++
+			$.ajax({
+				type:"post",
+				url:"http://localhost:8000/user/dow",
+				data:{
+					id:id,
+					num:num,
+					user:cc
+				},
+				success:function(da){
+				
+                    ss(da);
+				}
+			});
+		}
+		
+		
+						tui.onclick=function(){
+               		
+			
+		$.ajax({
+				type:"get",
+				url:"http://localhost:8000/user/tui",
+				data:{
+					user:cc
+				},
+				success:function(da){
+			console.log(da)
+			document.location.href='http://localhost:8000/index.html'
+				}
+			});
+			}
+		
+				//上传文件之后刷新页面
+		
+		
+		//获取cookie  跳转至下载页面
+		cook=document.cookie.split('=')
+		for(var i in cook){
+			console.log(cook[i]) 
+			console.log(cook[1].split('-'))
+			 cc=cook[1].split('-')[0]		
+		}
+					$.ajax({
+				type:"get",
+				url:"http://localhost:8000/user/loginshow",
+				data:{
+				user:cc
+				},
+				success:function(da){
+                    ss(da);
+                    
+				}
+			});
+			$('#hi').html(cc)
+		
+		 //登陆之后
+       function ss(da){
+			var str=''
+					           for(var i=0;i<da.length;i++){
+     	 
+					           var size1=(da[i].size/1024).toFixed(2)+'KB'
+					           
+					     
+         str+=` <tr class='tr'><td>${i+1}</td>
+            <td>${da[i].lname}</td>
+            <td>${size1}</td>
+            <td>${da[i].times}</td>
+            <td>${da[i].download}</td>
+            <td><a href="http://localhost:8000/img/${da[i].hname}" download="${da[i].lname}" class="aimg" onclick="dow(${da[i].ID},${da[i].download})">下载</a></td>
+            <td class="btn-show" data-toggle='modal' data-target='.abc'><input type="button" class="btn btn-default btn-info btn-xs" value="预览"></td>
+            <td class="move" onclick="move(${i})"><input type="button" class="btn btn-default btn-danger btn-xs" value="删除"></td>
+            </tr>`
+                }
+					           $('#tb1').html(str)
+
+}
+       
+        //  删除文件
+             function move(i){
+             			var otr= document.querySelectorAll('.tr')
+             		var msg = "您真的确定要删除吗？\n\n请确认！";	
+             	if(confirm(msg) == true) {
+						otr[i].style.display = 'none'
+						} else {
+							return false;
+						}
+
+             }
+             		//搜索功能
+		$('#search').bind('input propertychange', function() {
+			$.ajax({
+				url: 'http://localhost:8000/user/search',
+				type: 'get',
+				data: {
+					search: $('#search').val(),
+					user:cc
+				},
+				success: function(da) {
+					ss(da)
+				}
+			})
+		});
+		</script>
+	</body>
+</html>

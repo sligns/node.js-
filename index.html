@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>网盘系统</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    	<style>
+    		.th-show1{
+    		margin-left:170px;
+    		}
+    		   .box{
+            width: 600px;
+            height: 200px;
+            border: dashed 1px #666;
+            margin: 40px auto;
+        }
+
+    
+    	</style>
+  </head>
+  <body>
+
+<!--
+    登录注册首页
+-->
+			<div class='container con-show'>
+				<form>
+				<div class='form-group'>
+				<input type="button" name="" class='form-control btn btn-default btn-info' value="登录" style="margin-bottom:30px" data-toggle="modal" data-target="#s1" id='h1'>
+					<input type="button" name="" class='form-control btn btn-default btn-info' value="注册" data-toggle="modal" data-target="#s1"  id='h2'>
+					</div>	
+				</form>
+						
+
+		</div>
+		<div class='container allfile hide'>
+			<p class='namesNode hide'>欢迎回来 <span></span></p> 
+		<input type="file" class='btn btn-default btn-info center-block' id='pic'>
+			<div class="box">拖拽文件，松开上传</div>
+			<div class="view"></div>
+			<input type='button' class='btn btn-default btn-success center-block btn-lg' id='scfile' value='上传文件'  style="margin-top:30px" >
+					<div id='precent'>
+					<div id='nei'></div>
+				</div>
+		</div>
+		
+		
+		
+
+  
+    
+		<!--
+             登录注册页面详情
+        -->
+		
+		<!--
+           登录
+        -->
+				<div class='container'>
+			<div class="modal fade" tabindex="-1" role="dialog" id='s1'>
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">欢迎来到网盘录入系统</h4>
+							<form>
+				<div class='form-group'>
+				</div>
+				<div class='form-group'>
+					<label>用户名:</label>
+					<input type="" name="" class='form-control' id='user' value=''>
+				</div>
+				<div class='form-group'>
+					<label>密码:</label>
+					<input type="password" name="" class='form-control' id='pass' value=''>
+				</div>			
+				
+				<div class='form-group form-denglu'>
+<input type="button" name="" class='form-control btn btn-default btn-success' id='de' value="登录">
+	<div class="checkbox">
+    <label>
+      <input type="checkbox"  id="mm" checked> 记住我
+    </label>
+  </div>
+				</div>
+				
+				<!--
+                          注册
+                -->
+				<div class='form-zhuce'>
+	           <div id="img"></div>
+				<div class='inp '>
+					<small>上传头像</small><input type="file" id="files">
+				</div>		
+			<form>
+			<div class='form-group'>
+<input type="button" name="" class='form-control btn btn-default btn-success' id='zhu' value="注册" style='margin-top:30px;'>
+				</div>
+
+			</form>
+				</div>
+				</div>
+						</form>
+					</div>
+					</div>
+				</div>
+				<!--
+                网盘录入
+                登陆之前
+                -->
+				<h3>网盘录入系统</h3>
+				      <table class='table text-center table-hover th-show'>
+        <thead>
+          <tr>
+            <td>序号</td>
+            <td>上传者</td>           
+            <td>文件大小</td>
+            <td>上传时间</td>
+            <td>文件名</td>
+            <td>下载次数</td>
+          </tr>      
+        </thead>
+        <tbody id='tb'>
+        </tbody>
+      </table>
+							</div>
+				
+				<!--
+               登陆之后
+                -->
+ <div class='container th-show1 hide'>
+ 	<h4 style='color:chartreuse'>欢迎您来到网盘录入系统：</h4>
+ 	 	<input type="" name="" class='form-control' id='users' value='' disabled="disabled">
+ 	 			<input type="button" name="" class='btn btn-default btn-success btn-info top-right btn-lg' id='xia' value="转入下载页面">
+ 	 		<input type="search" id='search' name="" class='btn btn-default right' value="" placeholder="搜索您想预览的内容" style="margin-top:20px;">
+				<table class='table text-center table-hover'>
+        <thead>
+   <tr>
+            <td>序号</td>
+            <td>文件名</td>       
+            <td>文件大小</td>
+            <td>上传时间</td>
+            <td>下载次数</td>
+            <td>预览</td>
+            <td>是否删除</td>
+         </tr>      
+        </thead>
+        <tbody id='tb1'>
+        </tbody>
+     </table>		
+     
+     
+     
+    <div class="modal fade abc" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">展示栏</h4>
+          </div>
+          <div class="modal-body shows">
+          	<audio src='img/3fda859e06e29f806d44b8d4c38e7eec.mp3' controls></audio>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+    <script src="js/jq.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+    	//登录注册
+      $('#h1').click(function(){
+        $('.form-zhuce').hide()
+        $('.form-denglu').show()
+    })
+           $('#h2').click(function(){
+        $('.form-zhuce').show()
+        $('.form-denglu').hide()
+    })
+             
+           
+		//用户头像上传
+		var hurl = ''
+		files.onchange = function() {
+			var img = this.files[0]
+			var images = new FormData()
+			images.append('img', img)
+			ajax({
+				url: 'http://localhost:8000/user/img',
+				type: 'post',
+				data:images,
+				success: function(da) {
+					console.log(da)
+					var img = document.getElementById('img')
+					hurl = da
+					img.innerHTML = '<img src="' + da + '" style="width:140px;height:140px">'
+				},
+				error: function() {
+					console.log('失败')
+				}
+			})
+		}
+		
+		
+		//记住密码
+		
+		
+//上传文件
+		  var index=0;
+		 $('#scfile').on({
+        'click':function(){   
+        		var file1 = pic.files[0]
+          var fm = new FormData();
+          fm.append('files',file1);
+          fm.append('user',$('#users').val());
+          var xhr = new XMLHttpRequest();
+          xhr.open('post','http://localhost:8000/user/files',true);
+          xhr.send(fm);
+          xhr.onload = function(){
+            var json = eval('('+xhr.responseText+')');
+            if(json.ok == 1){
+            	alert('上传成功')	
+            	            			$.ajax({
+				type:"get",
+				url:"http://localhost:8000/user/loginshow",
+				data:{
+					user:$('#users').val()
+				},
+				success:function(da){
+                    ss(da);
+                    
+				}
+			});
+        
+
+
+              
+            }
+            else{
+             alert('上传失败')
+            }
+            $('#pic').val('');
+ 
+          }
+        }       
+    })
+		 //拖拽文件上传
+    var oBox = document.querySelector('.box');
+    var oView = document.querySelector('.view');
+    oBox.ondragenter = function (e) {
+        this.innerHTML = '松开上传';
+        e.preventDefault();
+    }
+    oBox.ondragleave = function (e) {
+        this.innerHTML = '拖拽文件，松开上传';
+        e.preventDefault();
+    }
+    oBox.ondragover = function (e) {
+        e.preventDefault();
+    }
+    oBox.ondrop = function (e) {
+        //e.dataTransfer.files 一组数据
+        var file = e.dataTransfer.files;
+console.log(file)
+        for (var i=0;i<file.length;i++){
+            //创建读取文件对象
+            var f = new FileReader();
+            f.readAsDataURL(file[i]);
+            f.onload = function (e) {       
+          oView.innerHTML = '名称：' + file[0].name + ' 大小：' + file[0].size/1024+'KB' + ' 类型：' + file[0].type;
+  		  var index=0;
+		 $('#scfile').on({
+        'click':function(){   	
+        		var file1 = file[0] 
+          var fd = new FormData();
+          fd.append('files',file1);
+          fd.append('user',$('#users').val());
+          var xhr = new XMLHttpRequest();
+          xhr.open('post','http://localhost:8000/user/files',true);
+          xhr.send(fd);
+          xhr.onload = function(){
+            var json = eval('('+xhr.responseText+')');
+            if(json.ok == 1){
+            alert('上传成功')
+            	            			$.ajax({
+				type:"get",
+				url:"http://localhost:8000/user/loginshow",
+				data:{
+					user:$('#users').val()
+				},
+				success:function(da){
+                    ss(da);
+                    
+				}
+			});
+            }
+            else{
+             alert('上传失败')
+            }
+            $('.view').val('');
+   
+          }
+        }
+    })				
+            }
+        }	
+         e.preventDefault();
+       }
+    
+          
+
+    
+			//注册
+		zhu.onclick = function() {
+			$.ajax({
+				url: 'http://localhost:8000/user/zhuce',
+				type: 'get',
+				data: {
+					user: $('#user').val(),
+					pass: $('#pass').val(),
+					hurl: hurl
+				},
+				success: function(da) {
+					alert(da)
+				},
+				error: function() {
+					console.log('失败')
+				}
+			})
+		}
+		
+		
+		//登录
+
+		de.onclick = function() {
+			ajax1({
+				url: 'http://localhost:8000/user/denglu',
+				type: 'get',
+				data: {
+					user: user.value,
+					pass: pass.value	
+				},
+				success: function(data) {
+						var json=eval('('+data+')')
+				
+					if(json.msg=='登陆成功,欢迎来到网盘录入系统') {
+						alert(json.msg)
+				  users.value=user.value;
+						$('.con-show').addClass('hide')
+						$('.allfile').addClass('show')
+						$('.th-show1').addClass('show')
+						$('.th-show').addClass('hide')
+
+
+
+						ss(json.data)
+
+
+				}
+					
+					},
+				error: function() {
+					console.log('失败')
+				}
+			})
+		}
+		
+		if(document.cookie){
+					 cook=document.cookie.split('=')
+		  for(var i in cook){
+			console.log(cook[i]) 
+			console.log(cook[1].split('-'))
+			 cc=cook[1].split('-')[0]//user
+			 ccc=cook[1].split('-')[1]//pass		
+			 console.log(mm.checked)
+				  if(mm.checked==false){
+			$('#user').val('')
+	$('#pass').val('')
+}else{
+$('#user').val(cc)
+	$('#pass').val(ccc)
+}
+		}
+		}else{
+			console.log('没有cookie')
+		}
+
+
+
+		
+		
+		//展示页面  登陆之前
+		        $.ajax({
+          'url':'http://localhost:8000/user/show',
+          'type':'get',
+          'success':function(data){
+          	var index=1;
+          	console.log(data)
+          	var str=''
+          	
+            for(var i = 0;i < data.length;i++){ 
+            	var thisTime = new Date().toLocaleDateString()+' '+new Date().toLocaleTimeString();
+              $('#tb')[0].appendChild(oTr1(index,data[i].user,(data[i].size/1024).toFixed(2)+'KB',thisTime,data[i].lname,data[i].download));
+            index++;
+            }
+          }
+        })
+
+		
+		 //登陆之后
+       function ss(da){
+			var str=''
+					           for(var i=0;i<da.length;i++){
+     	 
+					           var size1=(da[i].size/1024).toFixed(2)+'KB'
+					           
+					     
+         str+=` <tr class='tr'><td>${i+1}</td>
+            <td>${da[i].lname}</td>
+            <td>${size1}</td>
+            <td>${da[i].times}</td>
+            <td>${da[i].download}</td>
+            <td class="btn-show" data-toggle='modal' data-target='.abc'><input type="button" class="btn btn-default btn-info btn-xs" value="预览"></td>
+            <td class="move" onclick="move(${i})"><input type="button" class="btn btn-default btn-danger btn-xs" value="删除"></td>
+            </tr>`
+                }
+					           $('#tb1').html(str)
+
+}
+       
+  				
+    //跳转至下载页面
+    xia.onclick=function(){
+    	
+					document.location.href='http://localhost:8000/download.html'
+	
+    
+    }
+  				  
+									
+
+             function move(i){
+             			var otr= document.querySelectorAll('.tr')
+             		var msg = "您真的确定要删除吗？\n\n请确认！";	
+             	if(confirm(msg) == true) {
+						otr[i].style.display = 'none'
+						} else {
+							return false;
+						}
+
+             }
+             
+
+		 //  删除文件
+//           function move(i){
+//
+//  		var otr= document.querySelectorAll('.tr')
+//  yes.onclick=function(){
+//  	        $.ajax({
+//				type:"get",
+//				url:"http://localhost:8000/user/del",
+//				data:{
+//					id:Number($('.del')[i].innerHTML)
+//				},
+//				success:function(da){
+//		
+//				}
+//			});
+//  	otr[i].remove()
+// $('.bbb').modal('hide')
+//
+//  
+//  }
+//      no.onclick=function(){
+//     $('.bbb').modal('hide')
+//
+//  }
+//           			
+//		
+//           }
+             
+
+		//搜索功能
+		$('#search').bind('input propertychange', function() {
+			$.ajax({
+				url: 'http://localhost:8000/user/search',
+				type: 'get',
+				data: {
+					search: $('#search').val(),
+					user:$('#users').val()
+				},
+				success: function(da) {
+					ss(da)
+				}
+			})
+		});
+
+      //登陆之前循环td函数封装
+      
+            function oTr1(index,user,size,timer,lname,download,hash){
+        var oTr1 = document.createElement('tr');
+        $(oTr1).attr('hash',hash);
+        oTr1.innerHTML = `
+            <td>${index}</td>
+            <td>${user}</td>
+            <td>${size}</td>
+            <td>${timer}</td>
+            <td>${lname}</td>
+            <td>${download}</td>`;
+           
+    
+        return oTr1;
+      }
+
+	//ajax
+		function ajax(req) {
+			//	console.log(req.data)
+			if(window.XMLHttpRequest) {
+				var ajax = new XMLHttpRequest()
+			} else {
+				var ajax = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			if(req.type == 'get') {
+				ajax.open('get', req.url + '?' + strdata(req.data), true)
+				ajax.send()
+			} else {
+				ajax.open('post', req.url, true)
+				ajax.send(req.data)
+			}
+			ajax.onreadystatechange = function() {
+				if(ajax.readyState == 4) {
+					if(ajax.status >= 200 && ajax.status < 300 || ajax.status == 304) {
+						req.success(ajax.responseText)
+						//					console.log(ajax.responseText)
+					} else {
+						req.error(ajax.status)
+					}
+
+				}
+			}
+
+			function strdata(da) {
+				var arr = []
+				for(var i in da) {
+					arr.push(i + '=' + da[i])
+				}
+				var strurl = arr.join('&')
+				return strurl
+			}
+
+		}
+
+		//ajax1	
+
+		function ajax1(req) {
+			//	console.log(req.data)
+			if(window.XMLHttpRequest) {
+				var ajax = new XMLHttpRequest()
+			} else {
+				var ajax = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			if(req.type == 'get') {
+				ajax.open('get', req.url + '?' + strdata(req.data), true)
+				ajax.send()
+			} else {
+				ajax.open('post', req.url, true)
+				ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+				ajax.send(strdata(req.data))
+			}
+			ajax.onreadystatechange = function() {
+				if(ajax.readyState == 4) {
+					if(ajax.status >= 200 && ajax.status < 300 || ajax.status == 304) {
+						req.success(ajax.responseText)
+						//					console.log(ajax.responseText)
+					} else {
+						req.error(ajax.status)
+					}
+
+				}
+			}
+
+			function strdata(da) {
+				var arr = []
+				for(var i in da) {
+					arr.push(i + '=' + da[i])
+				}
+				var strurl = arr.join('&')
+				return strurl
+			}
+		}
+		
+		
+		function ajax2(option){
+		var arr = [];
+		for (var i in option.data){
+			arr.push(i + '=' + option.data[i])
+		}
+		var str = arr.join('&');
+
+		var xhr = new XMLHttpRequest();
+		if(option.type == 'get'){
+		xhr.open(option.type,option.url+'?'+str,option.async);
+		xhr.send();
+		}else if(option.type == 'post'){
+		xhr.open(option.type,option.url,option.async);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send(str);
+		}
+		
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status >= 200 && xhr.status < 300 || xhr.status == 304){
+					option.success(xhr.responseText)
+				}else{
+					option.error()
+				}
+			}
+		}
+	}
+           
+           
+    </script>
+  </body>
+</html>
